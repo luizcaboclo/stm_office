@@ -1,0 +1,179 @@
+body {
+    position: relative; /* Adiciona position:relative para que o posicionamento absoluto funcione corretamente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: animation 4s ease alternate infinite;
+    background: linear-gradient(to right, #ff0000, #000000, #FFFFFF);
+    background-size: 300% 100%;
+    margin: 0;
+    height: 100vh;
+}
+
+@keyframes animation {
+    from {
+        background-position: 0 50%;
+    }
+    to {
+        background-position: 100% 50%;
+    }
+}
+
+.wrap {
+    height: auto;
+    margin-top: 260%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    min-width: 300px;
+    min-height: 60px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: #313133;
+    background: #000000;
+    background: linear-gradient(90deg, rgb(243, 243, 243) 0%, rgb(255, 0, 0) 100%);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 12px 12px 24px rgba(207, 60, 60, 0.76);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+button::before {
+    content: '';
+    border-radius: 1000px;
+    min-width: calc(300px + 12px);
+    min-height: calc(60px + 12px);
+    border: 6px solid #ff0000;
+    box-shadow: 0 0 60px rgba(255, 0, 0, 0.64);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .2s ease-in-out 0s;
+}
+
+.button:hover,
+.button:focus {
+    color: #313133;
+    transform: translateY(-6px);
+}
+
+button:hover::before,
+button:focus::before {
+    opacity: 1;
+}
+
+button::after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid #ffffff;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 5.5s infinite;
+}
+
+button:hover::after,
+button:focus::after {
+    animation: none;
+    display: none;
+}
+
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; /* Alterado para display:flex */
+    flex-direction: row; /* Alterado para row para que os itens fiquem ao lado um do outro */
+    align-items: center;
+    justify-content: center; 
+}
+
+.card {
+    flex: 0 0 calc(20% - 20px);
+    margin-right: 10px;
+    position: relative;
+}
+
+/* Estilos para o elemento 'elo' */
+#elo {
+    top: 20px; /* Ajusta a posição para mais perto do topo */
+    position: absolute;
+    transform: translateX(-50%);
+    width: 50%;
+    border-radius: 40px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#elo:hover {
+    opacity: 1;
+}
+
+/* Estilos para o elemento 'title' */
+.title {
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    border-radius: 40px;
+}
+
+.card:hover #elo {
+    transform: translateY(-10px); /* Move o 'elo' para cima ao passar o mouse */
+}
+
+.card:hover .title {
+    transform: translateY(-10px); /* Move o 'title' para cima ao passar o mouse */
+}
+
+.card:hover {
+    flex: 2;
+    background-color: rgb(207, 207, 207);
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Esconde os controles padrão do vídeo */
+.video::-webkit-media-controls {
+    display: none !important;
+}
